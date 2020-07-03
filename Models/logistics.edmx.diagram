@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e2920225ada4151b3ea4f5aeffd75a3" Name="Diagram1">
+        <EntityTypeShape EntityType="LogisticsModel.ActionInfo" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Bill" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.BillTypes" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Bonus" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Car" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Cargo" Width="1.5" PointX="17.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.City" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Compensation" Width="1.5" PointX="17.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Department" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Employee" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.HaulWay" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.MenuInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Order" Width="1.5" PointX="15" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.PassByCity" Width="1.5" PointX="15" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Penalty" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Province" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Role" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Salay" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.SizeCharge" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.Station" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.UserInfo" Width="1.5" PointX="12.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LogisticsModel.WeightCharge" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="LogisticsModel.FK_BillEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_BillTypesBill" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_BonusEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_StationCar" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_CargoOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_PassByCloseCity" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_PassByOpenCity" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_ProvinceCity" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_CompensationOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_DepartmentEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_Emp_PenaltyEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_StationEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_OrderHaulWay" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_UserInfoOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.FK_UserInfoRole" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.CarEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.DepartmentActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.HaulWayPassByCity" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.RoleActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.RoleEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="LogisticsModel.SalayEmployee" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

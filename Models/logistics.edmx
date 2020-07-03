@@ -1,0 +1,1621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LogisticsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActionInfo">
+          <Key>
+            <PropertyRef Name="A_Id" />
+          </Key>
+          <Property Name="A_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HttpMethod" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="B_Id" />
+          </Key>
+          <Property Name="B_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BT_Id" Type="int" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_Id" Type="int" Nullable="false" />
+          <Property Name="Explain" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillTypes">
+          <Key>
+            <PropertyRef Name="BT_Id" />
+          </Key>
+          <Property Name="BT_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bonus">
+          <Key>
+            <PropertyRef Name="Bs_Id" />
+          </Key>
+          <Property Name="Bs_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cause" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BonusMoney" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="C_Id" />
+          </Key>
+          <Property Name="C_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="License" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Vload" Type="int" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="St_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarEmployee">
+          <Key>
+            <PropertyRef Name="Car_C_Id" />
+            <PropertyRef Name="Employee_E_Id" />
+          </Key>
+          <Property Name="Car_C_Id" Type="int" Nullable="false" />
+          <Property Name="Employee_E_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Cg_Id" />
+          </Key>
+          <Property Name="Cg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Size" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="C_Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="State" Type="smallint" Nullable="false" />
+          <Property Name="Carriage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ChargesNotes" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Order_O_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Ct_Id" />
+          </Key>
+          <Property Name="Ct_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="P_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compensation">
+          <Key>
+            <PropertyRef Name="Cp_Id" />
+          </Key>
+          <Property Name="Cp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Explain" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Order_O_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="D_Id" />
+          </Key>
+          <Property Name="D_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="D_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DepartmentActionInfo">
+          <Key>
+            <PropertyRef Name="Department_D_Id" />
+            <PropertyRef Name="ActionInfo_A_Id" />
+          </Key>
+          <Property Name="Department_D_Id" Type="int" Nullable="false" />
+          <Property Name="ActionInfo_A_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="E_Id" />
+          </Key>
+          <Property Name="E_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="E_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Identity" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LeaveDate" Type="datetime" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="D_Id" Type="int" Nullable="false" />
+          <Property Name="St_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HaulWay">
+          <Key>
+            <PropertyRef Name="H_Id" />
+          </Key>
+          <Property Name="H_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HaulWayPassByCity">
+          <Key>
+            <PropertyRef Name="HaulWay_H_Id" />
+            <PropertyRef Name="PassByCity_Pc_Id" />
+          </Key>
+          <Property Name="HaulWay_H_Id" Type="int" Nullable="false" />
+          <Property Name="PassByCity_Pc_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuInfo">
+          <Key>
+            <PropertyRef Name="M_Id" />
+          </Key>
+          <Property Name="M_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="M_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="A_Id" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="O_Id" />
+          </Key>
+          <Property Name="O_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Logistics_O_No" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="U_Id" Type="int" Nullable="false" />
+          <Property Name="H_Id" Type="int" Nullable="false" />
+          <Property Name="Carriage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassByCity">
+          <Key>
+            <PropertyRef Name="Pc_Id" />
+          </Key>
+          <Property Name="Pc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpenCt_Id" Type="int" Nullable="false" />
+          <Property Name="CloseCt_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Penalty">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cause" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PenaltyMoney" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="E_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleActionInfo">
+          <Key>
+            <PropertyRef Name="Role_R_Id" />
+            <PropertyRef Name="ActionInfo_A_Id" />
+          </Key>
+          <Property Name="Role_R_Id" Type="int" Nullable="false" />
+          <Property Name="ActionInfo_A_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleEmployee">
+          <Key>
+            <PropertyRef Name="Role_R_Id" />
+            <PropertyRef Name="Employee_E_Id" />
+          </Key>
+          <Property Name="Role_R_Id" Type="int" Nullable="false" />
+          <Property Name="Employee_E_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salay">
+          <Key>
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="S_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BasePay" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Bonus" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Penalty" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Insurance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SumSalay" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalayEmployee">
+          <Key>
+            <PropertyRef Name="Salay_S_Id" />
+            <PropertyRef Name="Employee_E_Id" />
+          </Key>
+          <Property Name="Salay_S_Id" Type="int" Nullable="false" />
+          <Property Name="Employee_E_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SizeCharge">
+          <Key>
+            <PropertyRef Name="Sc_Id" />
+          </Key>
+          <Property Name="Sc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChargesNotes" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="St_Id" />
+          </Key>
+          <Property Name="St_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="R_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WeightCharge">
+          <Key>
+            <PropertyRef Name="Wc_Id" />
+          </Key>
+          <Property Name="Wc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChargesNotes" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BillEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTypesBill">
+          <End Role="BillTypes" Type="Self.BillTypes" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillTypes">
+              <PropertyRef Name="BT_Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="BT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BonusEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bonus" Type="Self.Bonus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Bonus">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarEmployee_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarEmployee" Type="Self.CarEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="C_Id" />
+            </Principal>
+            <Dependent Role="CarEmployee">
+              <PropertyRef Name="Car_C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarEmployee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="CarEmployee" Type="Self.CarEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="CarEmployee">
+              <PropertyRef Name="Employee_E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargoOrder">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="O_Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="Order_O_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompensationOrder">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Compensation" Type="Self.Compensation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="O_Id" />
+            </Principal>
+            <Dependent Role="Compensation">
+              <PropertyRef Name="Order_O_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentActionInfo_ActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
+          <End Role="DepartmentActionInfo" Type="Self.DepartmentActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionInfo">
+              <PropertyRef Name="A_Id" />
+            </Principal>
+            <Dependent Role="DepartmentActionInfo">
+              <PropertyRef Name="ActionInfo_A_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentActionInfo_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="DepartmentActionInfo" Type="Self.DepartmentActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="D_Id" />
+            </Principal>
+            <Dependent Role="DepartmentActionInfo">
+              <PropertyRef Name="Department_D_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentEmployee">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="D_Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="D_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_PenaltyEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Penalty" Type="Self.Penalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Penalty">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HaulWayPassByCity_HaulWay">
+          <End Role="HaulWay" Type="Self.HaulWay" Multiplicity="1" />
+          <End Role="HaulWayPassByCity" Type="Self.HaulWayPassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HaulWay">
+              <PropertyRef Name="H_Id" />
+            </Principal>
+            <Dependent Role="HaulWayPassByCity">
+              <PropertyRef Name="HaulWay_H_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HaulWayPassByCity_PassByCity">
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="1" />
+          <End Role="HaulWayPassByCity" Type="Self.HaulWayPassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassByCity">
+              <PropertyRef Name="Pc_Id" />
+            </Principal>
+            <Dependent Role="HaulWayPassByCity">
+              <PropertyRef Name="PassByCity_Pc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHaulWay">
+          <End Role="HaulWay" Type="Self.HaulWay" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HaulWay">
+              <PropertyRef Name="H_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="H_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassByCloseCity">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="PassByCity">
+              <PropertyRef Name="CloseCt_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassByOpenCity">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="PassByCity">
+              <PropertyRef Name="OpenCt_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvinceCity">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="P_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleActionInfo_ActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
+          <End Role="RoleActionInfo" Type="Self.RoleActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionInfo">
+              <PropertyRef Name="A_Id" />
+            </Principal>
+            <Dependent Role="RoleActionInfo">
+              <PropertyRef Name="ActionInfo_A_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleActionInfo_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleActionInfo" Type="Self.RoleActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="R_Id" />
+            </Principal>
+            <Dependent Role="RoleActionInfo">
+              <PropertyRef Name="Role_R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleEmployee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RoleEmployee" Type="Self.RoleEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="RoleEmployee">
+              <PropertyRef Name="Employee_E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleEmployee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleEmployee" Type="Self.RoleEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="R_Id" />
+            </Principal>
+            <Dependent Role="RoleEmployee">
+              <PropertyRef Name="Role_R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalayEmployee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="SalayEmployee" Type="Self.SalayEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="SalayEmployee">
+              <PropertyRef Name="Employee_E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalayEmployee_Salay">
+          <End Role="Salay" Type="Self.Salay" Multiplicity="1" />
+          <End Role="SalayEmployee" Type="Self.SalayEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salay">
+              <PropertyRef Name="S_Id" />
+            </Principal>
+            <Dependent Role="SalayEmployee">
+              <PropertyRef Name="Salay_S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StationCar">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="St_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StationEmployee">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="St_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfoOrder">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfoRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="R_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LogisticsModelStoreContainer">
+          <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillTypes" EntityType="Self.BillTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bonus" EntityType="Self.Bonus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarEmployee" EntityType="Self.CarEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compensation" EntityType="Self.Compensation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentActionInfo" EntityType="Self.DepartmentActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HaulWay" EntityType="Self.HaulWay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HaulWayPassByCity" EntityType="Self.HaulWayPassByCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuInfo" EntityType="Self.MenuInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassByCity" EntityType="Self.PassByCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Penalty" EntityType="Self.Penalty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleActionInfo" EntityType="Self.RoleActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleEmployee" EntityType="Self.RoleEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salay" EntityType="Self.Salay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalayEmployee" EntityType="Self.SalayEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeCharge" EntityType="Self.SizeCharge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeightCharge" EntityType="Self.WeightCharge" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BillEmployee" Association="Self.FK_BillEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTypesBill" Association="Self.FK_BillTypesBill">
+            <End Role="BillTypes" EntitySet="BillTypes" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BonusEmployee" Association="Self.FK_BonusEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bonus" EntitySet="Bonus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarEmployee_Car" Association="Self.FK_CarEmployee_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="CarEmployee" EntitySet="CarEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarEmployee_Employee" Association="Self.FK_CarEmployee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="CarEmployee" EntitySet="CarEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargoOrder" Association="Self.FK_CargoOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompensationOrder" Association="Self.FK_CompensationOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Compensation" EntitySet="Compensation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentActionInfo_ActionInfo" Association="Self.FK_DepartmentActionInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="DepartmentActionInfo" EntitySet="DepartmentActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentActionInfo_Department" Association="Self.FK_DepartmentActionInfo_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DepartmentActionInfo" EntitySet="DepartmentActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentEmployee" Association="Self.FK_DepartmentEmployee">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_PenaltyEmployee" Association="Self.FK_Emp_PenaltyEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Penalty" EntitySet="Penalty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HaulWayPassByCity_HaulWay" Association="Self.FK_HaulWayPassByCity_HaulWay">
+            <End Role="HaulWay" EntitySet="HaulWay" />
+            <End Role="HaulWayPassByCity" EntitySet="HaulWayPassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HaulWayPassByCity_PassByCity" Association="Self.FK_HaulWayPassByCity_PassByCity">
+            <End Role="PassByCity" EntitySet="PassByCity" />
+            <End Role="HaulWayPassByCity" EntitySet="HaulWayPassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHaulWay" Association="Self.FK_OrderHaulWay">
+            <End Role="HaulWay" EntitySet="HaulWay" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassByCloseCity" Association="Self.FK_PassByCloseCity">
+            <End Role="City" EntitySet="City" />
+            <End Role="PassByCity" EntitySet="PassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassByOpenCity" Association="Self.FK_PassByOpenCity">
+            <End Role="City" EntitySet="City" />
+            <End Role="PassByCity" EntitySet="PassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvinceCity" Association="Self.FK_ProvinceCity">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleActionInfo_ActionInfo" Association="Self.FK_RoleActionInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="RoleActionInfo" EntitySet="RoleActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleActionInfo_Role" Association="Self.FK_RoleActionInfo_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleActionInfo" EntitySet="RoleActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleEmployee_Employee" Association="Self.FK_RoleEmployee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RoleEmployee" EntitySet="RoleEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleEmployee_Role" Association="Self.FK_RoleEmployee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleEmployee" EntitySet="RoleEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalayEmployee_Employee" Association="Self.FK_SalayEmployee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SalayEmployee" EntitySet="SalayEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalayEmployee_Salay" Association="Self.FK_SalayEmployee_Salay">
+            <End Role="Salay" EntitySet="Salay" />
+            <End Role="SalayEmployee" EntitySet="SalayEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StationCar" Association="Self.FK_StationCar">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StationEmployee" Association="Self.FK_StationEmployee">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfoOrder" Association="Self.FK_UserInfoOrder">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfoRole" Association="Self.FK_UserInfoRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LogisticsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActionInfo">
+          <Key>
+            <PropertyRef Name="A_Id" />
+          </Key>
+          <Property Name="A_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HttpMethod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.DepartmentActionInfo" FromRole="ActionInfo" ToRole="Department" />
+          <NavigationProperty Name="Role" Relationship="Self.RoleActionInfo" FromRole="ActionInfo" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="B_Id" />
+          </Key>
+          <Property Name="B_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BT_Id" Type="Int32" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_Id" Type="Int32" Nullable="false" />
+          <Property Name="Explain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_BillEmployee" FromRole="Bill" ToRole="Employee" />
+          <NavigationProperty Name="BillTypes" Relationship="Self.FK_BillTypesBill" FromRole="Bill" ToRole="BillTypes" />
+        </EntityType>
+        <EntityType Name="BillTypes">
+          <Key>
+            <PropertyRef Name="BT_Id" />
+          </Key>
+          <Property Name="BT_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillTypesBill" FromRole="BillTypes" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Bonus">
+          <Key>
+            <PropertyRef Name="Bs_Id" />
+          </Key>
+          <Property Name="Bs_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BonusMoney" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_BonusEmployee" FromRole="Bonus" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="C_Id" />
+          </Key>
+          <Property Name="C_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="License" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vload" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="St_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Station" Relationship="Self.FK_StationCar" FromRole="Car" ToRole="Station" />
+          <NavigationProperty Name="Employee" Relationship="Self.CarEmployee" FromRole="Car" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Cg_Id" />
+          </Key>
+          <Property Name="Cg_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Size" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="C_Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="State" Type="Int16" Nullable="false" />
+          <Property Name="Carriage" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ChargesNotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Order_O_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_CargoOrder" FromRole="Cargo" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Ct_Id" />
+          </Key>
+          <Property Name="Ct_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="P_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PassByCity" Relationship="Self.FK_PassByCloseCity" FromRole="City" ToRole="PassByCity" />
+          <NavigationProperty Name="PassByCity1" Relationship="Self.FK_PassByOpenCity" FromRole="City" ToRole="PassByCity" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_ProvinceCity" FromRole="City" ToRole="Province" />
+        </EntityType>
+        <EntityType Name="Compensation">
+          <Key>
+            <PropertyRef Name="Cp_Id" />
+          </Key>
+          <Property Name="Cp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Explain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Order_O_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_CompensationOrder" FromRole="Compensation" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="D_Id" />
+          </Key>
+          <Property Name="D_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="D_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_DepartmentEmployee" FromRole="Department" ToRole="Employee" />
+          <NavigationProperty Name="ActionInfo" Relationship="Self.DepartmentActionInfo" FromRole="Department" ToRole="ActionInfo" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="E_Id" />
+          </Key>
+          <Property Name="E_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="E_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Identity" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="D_Id" Type="Int32" Nullable="false" />
+          <Property Name="St_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillEmployee" FromRole="Employee" ToRole="Bill" />
+          <NavigationProperty Name="Bonus" Relationship="Self.FK_BonusEmployee" FromRole="Employee" ToRole="Bonus" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_DepartmentEmployee" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Penalty" Relationship="Self.FK_Emp_PenaltyEmployee" FromRole="Employee" ToRole="Penalty" />
+          <NavigationProperty Name="Station" Relationship="Self.FK_StationEmployee" FromRole="Employee" ToRole="Station" />
+          <NavigationProperty Name="Car" Relationship="Self.CarEmployee" FromRole="Employee" ToRole="Car" />
+          <NavigationProperty Name="Role" Relationship="Self.RoleEmployee" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Salay" Relationship="Self.SalayEmployee" FromRole="Employee" ToRole="Salay" />
+        </EntityType>
+        <EntityType Name="HaulWay">
+          <Key>
+            <PropertyRef Name="H_Id" />
+          </Key>
+          <Property Name="H_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderHaulWay" FromRole="HaulWay" ToRole="Order" />
+          <NavigationProperty Name="PassByCity" Relationship="Self.HaulWayPassByCity" FromRole="HaulWay" ToRole="PassByCity" />
+        </EntityType>
+        <EntityType Name="MenuInfo">
+          <Key>
+            <PropertyRef Name="M_Id" />
+          </Key>
+          <Property Name="M_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="M_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="A_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="O_Id" />
+          </Key>
+          <Property Name="O_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Logistics_O_No" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Id" Type="Int32" Nullable="false" />
+          <Property Name="H_Id" Type="Int32" Nullable="false" />
+          <Property Name="Carriage" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Cargo" Relationship="Self.FK_CargoOrder" FromRole="Order" ToRole="Cargo" />
+          <NavigationProperty Name="Compensation" Relationship="Self.FK_CompensationOrder" FromRole="Order" ToRole="Compensation" />
+          <NavigationProperty Name="HaulWay" Relationship="Self.FK_OrderHaulWay" FromRole="Order" ToRole="HaulWay" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserInfoOrder" FromRole="Order" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="PassByCity">
+          <Key>
+            <PropertyRef Name="Pc_Id" />
+          </Key>
+          <Property Name="Pc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpenCt_Id" Type="Int32" Nullable="false" />
+          <Property Name="CloseCt_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_PassByCloseCity" FromRole="PassByCity" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_PassByOpenCity" FromRole="PassByCity" ToRole="City" />
+          <NavigationProperty Name="HaulWay" Relationship="Self.HaulWayPassByCity" FromRole="PassByCity" ToRole="HaulWay" />
+        </EntityType>
+        <EntityType Name="Penalty">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PenaltyMoney" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="E_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Emp_PenaltyEmployee" FromRole="Penalty" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_ProvinceCity" FromRole="Province" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserInfoRole" FromRole="Role" ToRole="UserInfo" />
+          <NavigationProperty Name="ActionInfo" Relationship="Self.RoleActionInfo" FromRole="Role" ToRole="ActionInfo" />
+          <NavigationProperty Name="Employee" Relationship="Self.RoleEmployee" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Salay">
+          <Key>
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="S_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasePay" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Bonus" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Penalty" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Insurance" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SumSalay" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.SalayEmployee" FromRole="Salay" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SizeCharge">
+          <Key>
+            <PropertyRef Name="Sc_Id" />
+          </Key>
+          <Property Name="Sc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChargesNotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="St_Id" />
+          </Key>
+          <Property Name="St_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_StationCar" FromRole="Station" ToRole="Car" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_StationEmployee" FromRole="Station" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="R_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_UserInfoOrder" FromRole="UserInfo" ToRole="Order" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserInfoRole" FromRole="UserInfo" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="WeightCharge">
+          <Key>
+            <PropertyRef Name="Wc_Id" />
+          </Key>
+          <Property Name="Wc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChargesNotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BillEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTypesBill">
+          <End Role="BillTypes" Type="Self.BillTypes" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillTypes">
+              <PropertyRef Name="BT_Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="BT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BonusEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bonus" Type="Self.Bonus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Bonus">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StationCar">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="St_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargoOrder">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="O_Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="Order_O_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassByCloseCity">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="PassByCity">
+              <PropertyRef Name="CloseCt_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassByOpenCity">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="PassByCity">
+              <PropertyRef Name="OpenCt_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvinceCity">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="P_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompensationOrder">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Compensation" Type="Self.Compensation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="O_Id" />
+            </Principal>
+            <Dependent Role="Compensation">
+              <PropertyRef Name="Order_O_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentEmployee">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="D_Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="D_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_PenaltyEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Penalty" Type="Self.Penalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="E_Id" />
+            </Principal>
+            <Dependent Role="Penalty">
+              <PropertyRef Name="E_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StationEmployee">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="St_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHaulWay">
+          <End Role="HaulWay" Type="Self.HaulWay" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HaulWay">
+              <PropertyRef Name="H_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="H_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfoOrder">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfoRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="R_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CarEmployee">
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+        </Association>
+        <Association Name="DepartmentActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="*" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+        </Association>
+        <Association Name="HaulWayPassByCity">
+          <End Role="HaulWay" Type="Self.HaulWay" Multiplicity="*" />
+          <End Role="PassByCity" Type="Self.PassByCity" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+        </Association>
+        <Association Name="SalayEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <End Role="Salay" Type="Self.Salay" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="LogisticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" />
+          <EntitySet Name="BillTypes" EntityType="Self.BillTypes" />
+          <EntitySet Name="Bonus" EntityType="Self.Bonus" />
+          <EntitySet Name="Car" EntityType="Self.Car" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Compensation" EntityType="Self.Compensation" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="HaulWay" EntityType="Self.HaulWay" />
+          <EntitySet Name="MenuInfo" EntityType="Self.MenuInfo" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="PassByCity" EntityType="Self.PassByCity" />
+          <EntitySet Name="Penalty" EntityType="Self.Penalty" />
+          <EntitySet Name="Province" EntityType="Self.Province" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Salay" EntityType="Self.Salay" />
+          <EntitySet Name="SizeCharge" EntityType="Self.SizeCharge" />
+          <EntitySet Name="Station" EntityType="Self.Station" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <EntitySet Name="WeightCharge" EntityType="Self.WeightCharge" />
+          <AssociationSet Name="FK_BillEmployee" Association="Self.FK_BillEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTypesBill" Association="Self.FK_BillTypesBill">
+            <End Role="BillTypes" EntitySet="BillTypes" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BonusEmployee" Association="Self.FK_BonusEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bonus" EntitySet="Bonus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StationCar" Association="Self.FK_StationCar">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargoOrder" Association="Self.FK_CargoOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassByCloseCity" Association="Self.FK_PassByCloseCity">
+            <End Role="City" EntitySet="City" />
+            <End Role="PassByCity" EntitySet="PassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassByOpenCity" Association="Self.FK_PassByOpenCity">
+            <End Role="City" EntitySet="City" />
+            <End Role="PassByCity" EntitySet="PassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvinceCity" Association="Self.FK_ProvinceCity">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompensationOrder" Association="Self.FK_CompensationOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Compensation" EntitySet="Compensation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentEmployee" Association="Self.FK_DepartmentEmployee">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_PenaltyEmployee" Association="Self.FK_Emp_PenaltyEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Penalty" EntitySet="Penalty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StationEmployee" Association="Self.FK_StationEmployee">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHaulWay" Association="Self.FK_OrderHaulWay">
+            <End Role="HaulWay" EntitySet="HaulWay" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfoOrder" Association="Self.FK_UserInfoOrder">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfoRole" Association="Self.FK_UserInfoRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="CarEmployee" Association="Self.CarEmployee">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="DepartmentActionInfo" Association="Self.DepartmentActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="HaulWayPassByCity" Association="Self.HaulWayPassByCity">
+            <End Role="HaulWay" EntitySet="HaulWay" />
+            <End Role="PassByCity" EntitySet="PassByCity" />
+          </AssociationSet>
+          <AssociationSet Name="RoleActionInfo" Association="Self.RoleActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="RoleEmployee" Association="Self.RoleEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="SalayEmployee" Association="Self.SalayEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Salay" EntitySet="Salay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LogisticsModelStoreContainer" CdmEntityContainer="LogisticsEntities">
+          <EntitySetMapping Name="ActionInfo">
+            <EntityTypeMapping TypeName="LogisticsModel.ActionInfo">
+              <MappingFragment StoreEntitySet="ActionInfo">
+                <ScalarProperty Name="A_Id" ColumnName="A_Id" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HttpMethod" ColumnName="HttpMethod" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bill">
+            <EntityTypeMapping TypeName="LogisticsModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="B_Id" ColumnName="B_Id" />
+                <ScalarProperty Name="BT_Id" ColumnName="BT_Id" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="E_Id" ColumnName="E_Id" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillTypes">
+            <EntityTypeMapping TypeName="LogisticsModel.BillTypes">
+              <MappingFragment StoreEntitySet="BillTypes">
+                <ScalarProperty Name="BT_Id" ColumnName="BT_Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bonus">
+            <EntityTypeMapping TypeName="LogisticsModel.Bonus">
+              <MappingFragment StoreEntitySet="Bonus">
+                <ScalarProperty Name="Bs_Id" ColumnName="Bs_Id" />
+                <ScalarProperty Name="Cause" ColumnName="Cause" />
+                <ScalarProperty Name="BonusMoney" ColumnName="BonusMoney" />
+                <ScalarProperty Name="E_Id" ColumnName="E_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="LogisticsModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+                <ScalarProperty Name="License" ColumnName="License" />
+                <ScalarProperty Name="Vload" ColumnName="Vload" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="St_Id" ColumnName="St_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="LogisticsModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Cg_Id" ColumnName="Cg_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="C_Price" ColumnName="C_Price" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Carriage" ColumnName="Carriage" />
+                <ScalarProperty Name="ChargesNotes" ColumnName="ChargesNotes" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Order_O_Id" ColumnName="Order_O_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="LogisticsModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Ct_Id" ColumnName="Ct_Id" />
+                <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compensation">
+            <EntityTypeMapping TypeName="LogisticsModel.Compensation">
+              <MappingFragment StoreEntitySet="Compensation">
+                <ScalarProperty Name="Cp_Id" ColumnName="Cp_Id" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Order_O_Id" ColumnName="Order_O_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="LogisticsModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="D_Id" ColumnName="D_Id" />
+                <ScalarProperty Name="D_Name" ColumnName="D_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="LogisticsModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="E_Id" ColumnName="E_Id" />
+                <ScalarProperty Name="E_Name" ColumnName="E_Name" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Identity" ColumnName="Identity" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="D_Id" ColumnName="D_Id" />
+                <ScalarProperty Name="St_Id" ColumnName="St_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HaulWay">
+            <EntityTypeMapping TypeName="LogisticsModel.HaulWay">
+              <MappingFragment StoreEntitySet="HaulWay">
+                <ScalarProperty Name="H_Id" ColumnName="H_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuInfo">
+            <EntityTypeMapping TypeName="LogisticsModel.MenuInfo">
+              <MappingFragment StoreEntitySet="MenuInfo">
+                <ScalarProperty Name="M_Id" ColumnName="M_Id" />
+                <ScalarProperty Name="M_Name" ColumnName="M_Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="A_Id" ColumnName="A_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="LogisticsModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="O_Id" ColumnName="O_Id" />
+                <ScalarProperty Name="Logistics_O_No" ColumnName="Logistics_O_No" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="H_Id" ColumnName="H_Id" />
+                <ScalarProperty Name="Carriage" ColumnName="Carriage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassByCity">
+            <EntityTypeMapping TypeName="LogisticsModel.PassByCity">
+              <MappingFragment StoreEntitySet="PassByCity">
+                <ScalarProperty Name="Pc_Id" ColumnName="Pc_Id" />
+                <ScalarProperty Name="OpenCt_Id" ColumnName="OpenCt_Id" />
+                <ScalarProperty Name="CloseCt_Id" ColumnName="CloseCt_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Penalty">
+            <EntityTypeMapping TypeName="LogisticsModel.Penalty">
+              <MappingFragment StoreEntitySet="Penalty">
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="Cause" ColumnName="Cause" />
+                <ScalarProperty Name="PenaltyMoney" ColumnName="PenaltyMoney" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="E_Id" ColumnName="E_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Province">
+            <EntityTypeMapping TypeName="LogisticsModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="p_Name" ColumnName="p_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="LogisticsModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+                <ScalarProperty Name="R_Name" ColumnName="R_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salay">
+            <EntityTypeMapping TypeName="LogisticsModel.Salay">
+              <MappingFragment StoreEntitySet="Salay">
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="BasePay" ColumnName="BasePay" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="Penalty" ColumnName="Penalty" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="SumSalay" ColumnName="SumSalay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeCharge">
+            <EntityTypeMapping TypeName="LogisticsModel.SizeCharge">
+              <MappingFragment StoreEntitySet="SizeCharge">
+                <ScalarProperty Name="Sc_Id" ColumnName="Sc_Id" />
+                <ScalarProperty Name="ChargesNotes" ColumnName="ChargesNotes" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Station">
+            <EntityTypeMapping TypeName="LogisticsModel.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="St_Id" ColumnName="St_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="LogisticsModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeightCharge">
+            <EntityTypeMapping TypeName="LogisticsModel.WeightCharge">
+              <MappingFragment StoreEntitySet="WeightCharge">
+                <ScalarProperty Name="Wc_Id" ColumnName="Wc_Id" />
+                <ScalarProperty Name="ChargesNotes" ColumnName="ChargesNotes" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CarEmployee" TypeName="LogisticsModel.CarEmployee" StoreEntitySet="CarEmployee">
+            <EndProperty Name="Car">
+              <ScalarProperty Name="C_Id" ColumnName="Car_C_Id" />
+            </EndProperty>
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="E_Id" ColumnName="Employee_E_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DepartmentActionInfo" TypeName="LogisticsModel.DepartmentActionInfo" StoreEntitySet="DepartmentActionInfo">
+            <EndProperty Name="ActionInfo">
+              <ScalarProperty Name="A_Id" ColumnName="ActionInfo_A_Id" />
+            </EndProperty>
+            <EndProperty Name="Department">
+              <ScalarProperty Name="D_Id" ColumnName="Department_D_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="HaulWayPassByCity" TypeName="LogisticsModel.HaulWayPassByCity" StoreEntitySet="HaulWayPassByCity">
+            <EndProperty Name="HaulWay">
+              <ScalarProperty Name="H_Id" ColumnName="HaulWay_H_Id" />
+            </EndProperty>
+            <EndProperty Name="PassByCity">
+              <ScalarProperty Name="Pc_Id" ColumnName="PassByCity_Pc_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RoleActionInfo" TypeName="LogisticsModel.RoleActionInfo" StoreEntitySet="RoleActionInfo">
+            <EndProperty Name="ActionInfo">
+              <ScalarProperty Name="A_Id" ColumnName="ActionInfo_A_Id" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="R_Id" ColumnName="Role_R_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RoleEmployee" TypeName="LogisticsModel.RoleEmployee" StoreEntitySet="RoleEmployee">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="E_Id" ColumnName="Employee_E_Id" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="R_Id" ColumnName="Role_R_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SalayEmployee" TypeName="LogisticsModel.SalayEmployee" StoreEntitySet="SalayEmployee">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="E_Id" ColumnName="Employee_E_Id" />
+            </EndProperty>
+            <EndProperty Name="Salay">
+              <ScalarProperty Name="S_Id" ColumnName="Salay_S_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

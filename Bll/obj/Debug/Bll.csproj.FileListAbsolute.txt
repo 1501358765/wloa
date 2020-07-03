@@ -1,0 +1,6 @@
+D:\Y2C#\wloa\wloa\Bll\bin\Debug\Bll.dll
+D:\Y2C#\wloa\wloa\Bll\bin\Debug\Bll.pdb
+D:\Y2C#\wloa\wloa\Bll\obj\Debug\Bll.csprojAssemblyReference.cache
+D:\Y2C#\wloa\wloa\Bll\obj\Debug\Bll.csproj.CoreCompileInputs.cache
+D:\Y2C#\wloa\wloa\Bll\obj\Debug\Bll.dll
+D:\Y2C#\wloa\wloa\Bll\obj\Debug\Bll.pdb
